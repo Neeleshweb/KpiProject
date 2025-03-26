@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KPI Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+</head>
+<body>
+    <h1>KPI Dashboard</h1>
+
+    <h2>Trend of Issues</h2>
+    <div id="trend-chart"></div>
+
+    <h2>Delta of Issues</h2>
+    <div id="delta-chart"></div>
+
+    <script>
+        // Pass the data from Flask
+        const trendData = JSON.parse('{{ trends | tojson | safe }}');
+        const deltaData = JSON.parse('{{ deltas | tojson | safe }}');
+
+        // Process trends data
+        const trendCategories = Object.keys(trendData);
+        const dates = trendData[trendCategories[0]].map(item => item.date); // Extract dates from one category (shared across)
+
+        const trendTraces = trendCategories.map(category => {
+            return {
+                x: dates,
+                y: trendData[category].map(item => item.value), // Extract values for each category
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: category.replace('_', ' ').toUpperCase() // Format name for readability
+            };
+        });
+
+        const trendLayout = {
+            title: 'Trend of Issues Over Time',
+            xaxis: { title: 'Dates' },
+            yaxis: { title: 'Number of Issues' }
+        };
+
+        Plotly.newPlot('trend-chart', trendTraces, trendLayout);
+
+        // Process deltas data
+        const deltaCategories = Object.keys(deltaData);
+        const deltaDates = deltaData[deltaCategories[0]].map(item => item.date); // Extract delta dates (shared across)
+
+        const deltaTraces = deltaCategories.map(category => {
+            return {
+                x: deltaDates,
+                y: deltaData[category].map(item => item.delta), // Extract delta values for each category
+                type: 'bar',
+                name: category.replace('_', ' ').toUpperCase() // Format name for readability
+            };
+        });
+
+        const deltaLayout = {
+            title: 'Delta of Issues',
+            xaxis: { title: 'Issue Categories' },
+            yaxis: { title: 'Delta Values' }
+        };
+
+        Plotly.newPlot('delta-chart', deltaTraces, deltaLayout);
+    </script>
+</body>
+</html>
