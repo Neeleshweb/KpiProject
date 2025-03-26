@@ -1,0 +1,47 @@
+{
+    "2025-01-17": {
+        "done": 33,
+        "in_progress": 55,
+        "to_do": 4
+    },
+    "2025-01-19": {
+        "done": 33,
+        "in_progress": 55,
+        "to_do": 4
+    },
+    "2025-01-21": {
+        "done": 36,
+        "in_progress": 67,
+        "to_do": 2
+    },
+    "2025-01-23": {
+        "done": 46,
+        "in_progress": 74,
+        "to_do": 1
+    },
+    "2025-01-24": {
+        "done": 59,
+        "in_progress": 66,
+        "to_do": 1
+    },
+    "2025-01-27": {
+        "done": 67,
+        "in_progress": 74,
+        "to_do": 0
+    },
+    "2025-01-29": {
+        "done": 42,
+        "in_progress": 45,
+        "to_do": 16
+    },
+    "2025-01-30": {
+        "done": 43,
+        "in_progress": 50,
+        "to_do": 15
+    },
+    "2025-03-26": {
+        "done": 26,
+        "in_progress": 31,
+        "to_do": 22
+    }
+}
